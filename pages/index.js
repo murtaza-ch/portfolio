@@ -43,7 +43,7 @@ export default class index extends Component {
   render() {
     return (
       <BaseLayout>
-        <h4 className="title">Home Page</h4>
+        <h4 className="title">Home Page Updated</h4>
         <h4>{this.state.title}</h4>
         <button onClick={()=> this.handleChange()}>onClick</button>
       </BaseLayout>
