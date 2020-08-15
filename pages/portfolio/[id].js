@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { withRouter } from "next/router";
-import axios from 'axios';
+import axios from "axios";
+import BaseLayout from "../../components/layout/BaseLayout";
+import BasePage from "../../components/BasePage";
 
 class portDetails extends Component {
   static async getInitialProps(context) {
-
     let post = {};
-    const postId=context.query.id;
+    const postId = context.query.id;
     try {
       const response = await axios.get(
         `https://jsonplaceholder.typicode.com/posts/${postId}`
@@ -15,16 +16,18 @@ class portDetails extends Component {
     } catch (error) {
       console.log(error);
     }
-    return { post};
+    return { post };
   }
 
   render() {
-      const {post}=this.props;
+    const { post } = this.props;
     return (
-      <div>
-      <h1>{post.title}</h1>
-        <h4>{post.body}</h4>
-      </div>
+      <BaseLayout {...this.props.auth}>
+        <BasePage>
+          <h1>{post.title}</h1>
+          <h4>{post.body}</h4>
+        </BasePage>
+      </BaseLayout>
     );
   }
 }
